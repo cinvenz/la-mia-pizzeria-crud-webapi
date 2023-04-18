@@ -1,0 +1,22 @@
+﻿@model Pizza
+
+@{
+    var pizza = Model;
+}
+
+<div class="card" style="width: 18rem; height: 25rem;">
+    <img src="@pizza.Image" class="card-img-top" alt="Pizza Margherita">
+    <div class="card-body">
+        <h5 class="card-title  ms-lg-3"><a href="@Url.Action("Detail", "Pizza", new { Id = pizza.Id })">@pizza.Name</a></h5>
+        <p class="card-text  ms-lg-3">@pizza.Description</p>
+        <h6 class="ms-lg-3">@pizza.Price $</h6>
+        
+        <h6>Ingredients:</h6>
+        <div>
+            @foreach (var Ingredient in pizza.Ingredients!)
+            {
+                <span>@Ingredient.Title</span>
+            }
+        </div>
+    </div>
+</div>

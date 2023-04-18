@@ -1,0 +1,52 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.image {
+    width: 20px;
+    height: 20px;
+}
+
+img{
+    height:150px;
+    object-fit: cover;
+}
+
+.container-card {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    height: 24rem !important;
+    flex-basis: 33%;
+}
+
+.pad {
+    padding: 16px;
+}
+
+.form-field {
+    display: grid;
+    gap: 4px;
+    min-width: 400px;
+}
+
+    .form-field textarea {
+        resize: vertical;
+    }

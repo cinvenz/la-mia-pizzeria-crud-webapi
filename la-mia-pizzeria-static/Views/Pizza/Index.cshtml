@@ -1,0 +1,113 @@
+﻿@model Pizza[]
+@{
+    ViewData["Title"] = "Home Page";
+    var pizze = Model;
+}
+
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="pad">
+        <a href="@Url.Action("Create", "Pizza")">New post</a>
+    </div>
+}
+    
+<h1 class="text-center text-danger">Pizze presenti nel menu</h1>
+<div class="text-center pb-3">
+    <a href="@Url.Action("Create", "Pizza")">Crea nuova pizza</a>
+</div>
+    
+<div class="container container-card gap-4">
+@if (pizze.Length is 0)
+{
+    <p>No Pizze to display :\</p>
+}
+else
+{
+    @foreach (var pizza in pizze)
+    {
+
+            @await Html.PartialAsync("_PizzaRow", pizza);
+    }
+}
+</div>
+    
+
+   @* <div class="container d-flex gap-4">
+    <div class="card" style="width: 18rem; height: 25rem;">
+        <img src="https://picsum.photos/id/237/200/300" class="card-img-top" alt="Pizza Margherita">
+        <div class="card-body">
+            <h5 class="card-title  ms-lg-3">Pizza Diavola</h5>
+            <p class="card-text  ms-lg-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <h6 class="ms-lg-3">Prezzo:4.50$</h6>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem; height: 25rem;">
+        <img src="https://picsum.photos/id/237/200/300" class="card-img-top" alt="Pizza Margherita">
+        <div class="card-body">
+            <h5 class="card-title  ms-lg-3">Pizza Capricciosa</h5>
+            <p class="card-text  ms-lg-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <h6 class="ms-lg-3">Prezzo:6.80$</h6>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem; height: 25rem;">
+        <img src="https://picsum.photos/id/237/200/300" class="card-img-top" alt="Pizza Margherita">
+        <div class="card-body">
+            <h5 class="card-title  ms-lg-3">Pizza Marinara</h5>
+            <p class="card-text  ms-lg-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <h6 class="ms-lg-3">Prezzo:5$</h6>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem; height: 25rem;">
+        <img src="https://picsum.photos/id/237/200/300" class="card-img-top" alt="Pizza Margherita">
+        <div class="card-body">
+            <h5 class="card-title  ms-lg-3">Pizza Fumè</h5>
+            <p class="card-text  ms-lg-3">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <h6 class="ms-lg-3">Prezzo:5.50$</h6>
+        </div>
+    </div>
+    </div>*@
+
+ @*   <table>
+        <tr>
+            <td>0</td>
+            <td>Nome</td>
+            <td>Description</td>
+            <td>Foto</td>
+            <td>Prezzo</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td class="name">Pizza Diavola</td>
+            <td class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia quis est adipisci incidunt rem nostrum ipsam fuga ratione tempora eveniet!</td>
+            <td class="image"><img class="post-link-image" src="https://picsum.photos/id/237/200/300"></td>
+            <td class="price">4.50 euro</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td class="name">Pizza Capricciosa</td>
+            <td class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia quis est adipisci incidunt rem nostrum ipsam fuga ratione tempora eveniet!</td>
+            <td class="image"><img class="post-link-image" src="https://picsum.photos/id/237/200/300"></td>
+            <td class="price">6.80 euro</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td class="name">Pizza Marinara</td>
+            <td class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia quis est adipisci incidunt rem nostrum ipsam fuga ratione tempora eveniet!</td>
+            <td class="image"><img class="post-link-image" src="https://picsum.photos/id/237/200/300"></td>
+            <td class="price">5 euro</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td class="name">Pizza Fumè</td>
+            <td class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia quis est adipisci incidunt rem nostrum ipsam fuga ratione tempora eveniet!</td>
+            <td class="image"><img class="post-link-image" src="https://picsum.photos/id/237/200/300"></td>
+            <td class="price">5.50 euro</td>
+        </tr>
+    </table>*@
+
+
+

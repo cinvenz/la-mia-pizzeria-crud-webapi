@@ -1,0 +1,58 @@
+﻿@model PizzaFormModel
+
+@{
+	var pizza = Model;
+}
+
+<h2>New pizza</h2>
+
+<div class="container">
+	<div class="pad">
+		<form method="post" asp-controller="Pizza" asp-action="Create">
+			@Html.AntiForgeryToken()
+			<div class="form-field">
+				<label asp-for="Pizza.Name">Name</label>
+				<input asp-for="Pizza.Name" />
+				<span asp-validation-for="Pizza.Name" class="text error"></span>
+			</div>
+			<div class="form-field">
+				<label asp-for="Pizza.Description">Description</label>
+				<textarea asp-for="Pizza.Description"></textarea>
+				<span asp-validation-for="Pizza.Description" class="text error"></span>
+			</div>
+			<div class="form-field">
+				<label asp-for="Pizza.Image">Image source</label>
+				<input asp-for="Pizza.Image" />
+				<span asp-validation-for="Pizza.Image" class="text error"></span>
+			</div
+			<div class="form-field">
+				<label asp-for="Pizza.ImageFile">Image file</label>
+				<input type="file" asp-for="Pizza.ImageFile"/>
+				<span asp-validation-for="Pizza.ImageFile" class="text error"></span>
+			</div>
+			<div class="form-field">
+				<label asp-for="Pizza.Price">Price</label>
+				<input asp-for="Pizza.Price" />
+				<span asp-validation-for="Pizza.Price" class="text error"></span>
+			</div>
+
+			<div class="form-field">
+				<label asp-for="Pizza.CategoryId">Category</label>
+				<select asp-for="Pizza.CategoryId">
+					<option value="0"></option>
+					@foreach (var cat in Model.Categories)
+					{
+						<option value="@cat.Id">@cat.Title</option>
+					}
+				</select>
+				<span asp-validation-for="Pizza.CategoryId" class="text error"></span>
+			</div>
+			<div class="form-field">
+				<label asp-for="SelectedIngredients">Ingredients</label>
+				<select asp-for="SelectedIngredients" multiple="multiple" asp-items="@Model.Ingredients"></select>
+			</div>
+			<button type="submit">Create</button>
+		</form>
+	</div>
+</div>
+

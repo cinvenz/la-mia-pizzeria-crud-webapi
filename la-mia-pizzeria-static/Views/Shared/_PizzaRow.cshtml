@@ -1,0 +1,23 @@
+﻿@model Pizza
+
+@{
+    var pizza = Model;
+}
+<div class="">
+    <div class="card" style="width: 18rem; height: 25rem;">
+        <img src="@pizza.Image" class="card-img-top" alt="Pizza Margherita">
+        <div class="card-body">
+            <h5 class="card-title  ms-lg-3"><a href="@Url.Action("Detail", "Pizza", new { Id = pizza.Id })">@pizza.Name</a></h5>
+            <p class="card-text  ms-lg-3">@pizza.Description</p>
+            <h6 class="ms-lg-3">@pizza.Price $</h6>
+            <h6 class="ms-lg-3">@pizza.Category!.Title</h6>
+            <div class="text-center">
+                <a href="@Url.Action("Update", "Pizza", new { Id = pizza.Id})">Edit</a>
+                <form asp-action="Delete" asp-controller="Pizza" asp-route-id="@pizza.Id">
+                    @Html.AntiForgeryToken()
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
