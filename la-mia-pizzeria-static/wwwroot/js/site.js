@@ -5,27 +5,13 @@
 const loadPizze = filter => getPizze(filter).then(renderPizze);
 
 const getPizze = name => axios
-   .get('/api/pizza', name ? { params: { name } } : {})
-   .then(res => res.data);
+    .get('/api/pizza', name ? { params: { name } } : {})
+    .then(res => res.data);
 
 const renderPizze = pizze => {
-    const renderPizze = document.querySelector("#no-pizze");
-    const loader = document.querySelector("#pizze-loader");
-    const pizzeTbody = document.querySelector("#pizze");
-    const pizzeTable = document.querySelector("#pizze-table");
-    const pizzeFilter = document.querySelector("#pizze-filter");
-
-    if (pizze && pizze.length > 0) {
-        pizzeTable.classList.add("show");
-        PizzaFilter.classList.add("show");
-        noPizze.classList.remove("show");
-    }
-    else noPizze.classList.add("show");
-
-    loader.classList.add("hide");
-
-    PizzeTbody.innerHTML = Pizze.map(pizzaComponent).join('');
-};
+    const cards = document.getElementById('pizze-filter');
+    cards.innerHTML = pizze.map(pizzaComponent).join('');
+}
 
 const pizzaComponent = pizza => `
  <div class="">
@@ -36,9 +22,9 @@ const pizzaComponent = pizza => `
             <p class="card-text  ms-lg-3">${pizza.description}</p>
             <h6 class="ms-lg-3">${pizza.price} $</h6>
             <h6 class="ms-lg-3">${pizza.category.title}</h6>
-            <form action="/Pizza/ApiDelete/${pizza.id}"> method="post">
-                    <button type="submit" class="btn btn-secondary mt-3 text-black">Delete</button>
-            </form>
+              <button onClick="deletePizza(${pizza.id})" type="submit" class="btn btn-danger">
+                      Cancella
+              </button>
         </div>
     </div>
 </div>`;
@@ -136,22 +122,6 @@ const renderErrors = errors => {
     categoryIdErrors.innerText = errors.CategoryId?.join("\n") ?? "";
 };
 
-// </CreatePizza>
-
-// <EditPizza>
-
-const initEditForm = () => {
-    const form = document.querySelector("#pizza-edit-form");
-    const name = form.querySelector("#name");
-    const description = form.querySelector("#description");
-    const price = form.querySelector("#price");
-    const image = form.querySelector("#image");
-    const categoryId = form.querySelector("#category-id");
-
-    const pizza = getPizza().then(pizza => {
-
-    });
-};
 
 const getPizza = id => axios
     .get(`/api/pizza/${id}`)
@@ -159,3 +129,12 @@ const getPizza = id => axios
 
 
 
+function deletePizza(id) {
+    axios.delete(`/Api/Pizza/${id}`)
+        .then(function (response) {
+            console.log(response)
+        }).catch(function (error) {
+            console.log(error)
+        });
+    location.reload()
+}

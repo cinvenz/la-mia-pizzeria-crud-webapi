@@ -1,6 +1,7 @@
 ﻿using la_mia_pizzeria_static.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 
 namespace la_mia_pizzeria_static.Api
@@ -20,9 +21,11 @@ namespace la_mia_pizzeria_static.Api
         public IActionResult GetPizze([FromQuery] string? name)
         {
             var pizze = _context.Pizze
+                .Include(p => p.Category)
                 .Where(p => name == null || p.Name.ToLower().Contains(name.ToLower()))
                 .ToList();
 
+            foreach (var pizza in pizze) pizza.Category!.Pizze = null;
             return Ok(pizze);
         }
 
