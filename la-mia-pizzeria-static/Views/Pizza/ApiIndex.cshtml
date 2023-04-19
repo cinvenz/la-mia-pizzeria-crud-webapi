@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2>My pizze</h2>
+
+@if (User.IsInRole("Admin"))
+{
+    <div class="pad">
+        <a href="@Url.Action("ApiCreate", "Pizza")">New post</a>
+    </div>
+}
+
+<h1 class="text-center text-danger">Pizze presenti nel menu</h1>
+
+<p id="posts-loader">Loading posts...</p>
+
+<p id="no-posts">No post to display :\</p>
+
+<div id="posts-filter">
+    <div class="form-field">
+        <label>Filter by title</label>
+        <input placeholder="filter" />
+    </div>
+</div>
+
+
+@section Scripts
+    {
+    <script>
+        loadPizze();
+        initFilter();
+    </script>
+}

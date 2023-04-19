@@ -8,6 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="Views\Pizza\ApiCreate.cshtml" />
+    <None Include="Views\Pizza\ApiIndex.cshtml" />
+    <None Include="Views\Pizza\Create.cshtml" />
+    <None Include="Views\Pizza\Detail.cshtml" />
+    <None Include="Views\Pizza\Index.cshtml" />
+    <None Include="Views\Pizza\Privacy.cshtml" />
+    <None Include="Views\Pizza\Update.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.13" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.15" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />
